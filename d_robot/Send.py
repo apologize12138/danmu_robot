@@ -33,7 +33,9 @@ class SendLiveRoll():
                                  '00200-16104eb316e3f; Hm_lpvt_8a6e55dbd2870f0f5bc9194cddf32a02=1516252042; _dfcaptc'
                                  'ha=329cf06198f5a18766c986812664e2f1'}#你的cookies
         """
-        self.cookie = {'Cookie': 'buvid3=1DD2673B-2239-4026-B917-F08D67DDB49012251infoc; LIVE_BUVID=58925189fc9d3285c4e9107977106eef; Hm_lvt_8a6e55dbd2870f0f5bc9194cddf32a02=1526999326,1526999597,1526999727,1527002582; sid=ilsqem6n; fts=1516194841; LIVE_BUVID__ckMd5=e23e03c1c88c3377; UM_distinctid=16104eb316d107-00069204dd6b4d8-173a7440-100200-16104eb316e3f; pgv_pvi=1838871552; rpdid=olpiixpmqpdosiwmpimiw; CURRENT_QUALITY=80; finger=964b42c0; DedeUserID=24195837; DedeUserID__ckMd5=d1c1cdef421589c7; SESSDATA=1b658c21%2C1529511381%2Cf89add44; bili_jct=b4bc76fe93d635b5a47f68989fb30faa; Hm_lpvt_8a6e55dbd2870f0f5bc9194cddf32a02=1527002582; im_notify_type_24195837=0; _dfcaptcha=d2da6df93653ee20972092f35d647684'}
+        #self.cookie = {'Cookie': 'l=v; finger=edc6ecda; buvid3=D8C24A24-E921-467E-A09B-96AB785CCAAD103050infoc; LIVE_BUVID=AUTO7915269904519694; sid=anepyb3s; DedeUserID=24195837; DedeUserID__ckMd5=d1c1cdef421589c7; SESSDATA=1b658c21%2C1529582489%2C570377d3; bili_jct=5fa697f73143af565b13404751284e84; _dfcaptcha=cf805f27c675bc9decfa47f93b62ba18; Hm_lvt_8a6e55dbd2870f0f5bc9194cddf32a02=1526990469,1527085312,1527085722; Hm_lpvt_8a6e55dbd2870f0f5bc9194cddf32a02=1527085722'}
+        self.cookie = {'Cookie': 'l=v; finger=edc6ecda; buvid3=D8C24A24-E921-467E-A09B-96AB785CCAAD103050infoc; LIVE_BUVID=AUTO7915269904519694; sid=anepyb3s; DedeUserID=24195837; DedeUserID__ckMd5=d1c1cdef421589c7; SESSDATA=1b658c21%2C1529582489%2C570377d3; bili_jct=5fa697f73143af565b13404751284e84; _dfcaptcha=cf805f27c675bc9decfa47f93b62ba18; Hm_lvt_8a6e55dbd2870f0f5bc9194cddf32a02=1526990469,1527085312,1527085722,1527085820; Hm_lpvt_8a6e55dbd2870f0f5bc9194cddf32a02=1527085820'}
+
     def getDanMu(self):
 
         html_1 = requests.post(self.url_1, data = self.form1)
@@ -55,12 +57,12 @@ class SendLiveRoll():
     #发送弹幕
     def postDanMu(self):
         self.form2 = {'color':'16777215',
-                      'csrf_token':'1527002580',
                       'fontsize':'25',
                       'mode':'1',
                       'msg':self.danmu,
-                      'rnd':'1527002580',
-                      'roomid': self.roomid}
+                      'rnd':'1527085818',
+                      'roomid': self.roomid,
+                      'csrf_token':'5fa697f73143af565b13404751284e84'}
         #print(self.form2)
 
         a = requests.post(self.url_2, data = self.form2, cookies = self.cookie)
