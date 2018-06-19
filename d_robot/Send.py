@@ -6,17 +6,22 @@ import requests #1.
 import time
 import random
 import judge
+import study
 
 #程序运行判断。。。全局
 Start = 0
 need_send = 1
+need_study = 0
 Robot_Time = 1#range in  (1,6)自适应
-my_ns = "烟雨&浮尘"
-base_data = {'233', '666',  '康纳', '卡拉',  '马库斯', '帅','哈哈','晚安','nb','牛逼','皮一下','厉害','握把'}
+my_ns = "烟雨s浮尘"
+base_data = {'23333','6666','flag','前方高能','高能','233', '666',  '康纳', '卡拉',  '马库斯', '帅','哈哈','晚安'
+            ,'nb','牛逼','皮一下','厉害','握把','嘤嘤嘤','???','溜了','凉凉' ,'穷','细','吃鸡','五开','神仙','空投'
+            ,'可爱','刺激','舒服了','777','88'
+             }
 
 
 #参数
-r_id =	92075
+r_id = 3495920
 
 class SendLiveRoll():
     #初始化函数
@@ -27,6 +32,7 @@ class SendLiveRoll():
         self.text = ''#弹幕内容
         self.nickname = ''#发送者
         self.jd = judge.Judge_Send(base_data)#judge实例
+        self.sd = study.Study_Robot()#study实例
 
         #真实网址 获取弹幕---f12 网络 msg 消息头
         self.url_1 = 'https://api.live.bilibili.com/ajax/msg'
@@ -50,6 +56,7 @@ class SendLiveRoll():
         index = 9
         global Start
         global need_send
+        global need_study
         need_send = 1
         ds = html_1.json()['data']['room'][index]['text']
         ns = html_1.json()['data']['room'][index]['nickname']
@@ -63,6 +70,7 @@ class SendLiveRoll():
         self.nickname = ns
         self.text = ds
         if need_send == 1:
+            need_study = 1
             print("new msg  "+ str(index) + '::' + self.nickname + '----' + self.text)
 
     #发送弹幕
@@ -79,14 +87,15 @@ class SendLiveRoll():
         a = requests.post(self.url_2, data = self.form2, cookies = self.cookie)
         print('send---------'+self.text)
 
-    def study(self):
-        #--------------------
+    def judge(self):
+        # --------------------
         global need_send
-        need_send = 0
-        rt = self.jd.need_send(self.text)#判断是否需要发送
+        rt = self.jd.need_send(self.text)  # 判断是否需要发送
         need_send = rt[0]
         self.text = rt[1]
-        #print(0.0)
+
+    def study(self):
+        print('have studied')
 
     def run_send(self):
         #--------------------
@@ -97,15 +106,17 @@ class SendLiveRoll():
 if __name__ == '__main__':
     flag = 1
     danmu = SendLiveRoll(r_id)
-    #global need_send
     while 1:
         danmu.getDanMu()
-        if need_send == 1:
-            danmu.study()
-            danmu.run_send()
+        if danmu.nickname != my_ns:
+            need_send = 0
+            danmu.judge()
+            if need_study == 1:
+                danmu.study()
+                need_study = 0
+            if need_send == 1:
+                danmu.run_send()
         time.sleep(Robot_Time)
-
-
 
 
 
