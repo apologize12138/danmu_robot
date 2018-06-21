@@ -43,7 +43,7 @@ def main():
     # 发送取消按钮和图片
     btnSend = Button(frmLB, text='发 送', width=8, command=sendMsg)
     btnCancel = Button(frmLB, text='取消', width=8, command=cancelMsg)
-    imgInfo = PhotoImage(file="python_logo.gif")
+    imgInfo = PhotoImage(file="robot.gif")#python_logo.gif")
     lblImage = Label(frmRT, image=imgInfo)
     lblImage.image = imgInfo
 

@@ -23,7 +23,7 @@ base_data = {'23333','6666','flag','前方高能','高能','233', '666',  '康�
 
 
 #参数
-r_id = 271744#360972
+r_id = 271744#360972  4196663
 
 
 def pop_up_box():
@@ -46,7 +46,7 @@ def pop_up_box():
 
     num = 0
     root = tkinter.Tk(className='请输入直播间roomid')  # 弹出框框名
-    root.geometry('270x60')  # 设置弹出框的大小 w x h
+    root.geometry('270x60+250+250')  # 设置弹出框的大小 w x h
 
     var = tkinter.StringVar()  # 这即是输入框中的内容
     var.set(r_id)  # 通过var.get()/var.set() 来 获取/设置var的值
@@ -61,6 +61,10 @@ def pop_up_box():
 
     # 上述完成之后, 开始真正弹出弹出框
     root.mainloop()
+
+def update_my_send(text):
+    with open('my_send_data.txt', 'a+') as f1:
+        f1.write(text + '\n')
 
 class SendLiveRoll():
     #初始化函数
@@ -124,6 +128,7 @@ class SendLiveRoll():
         #print(self.form2)
 
         a = requests.post(self.url_2, data = self.form2, cookies = self.cookie)
+        update_my_send(send_text)
         print('send---------'+send_text)
 
     def judge(self):
@@ -160,9 +165,9 @@ if __name__ == '__main__':
                 need_study = 0
                 if need_send == 1:
                     #time.sleep(1)#1111111
-                    print('follow'+ danmu.nickname+' send---------' + send_text)#1111111111
-                    #danmu.run_send()
-        time.sleep(0.2)
+                    #print('follow'+ danmu.nickname+' send---------' + send_text)#1111111111
+                    danmu.run_send()
+        time.sleep(Robot_Time)
 
 
 
