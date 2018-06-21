@@ -23,7 +23,7 @@ base_data = {'23333','6666','flag','前方高能','高能','233', '666',  '康�
 
 
 #参数
-r_id = 271744#360972  4196663
+r_id = 5096#360972  4196663
 
 
 def pop_up_box():
@@ -100,6 +100,7 @@ class SendLiveRoll():
         global Start
         global need_send
         global need_study
+        global Robot_Time
         need_send = 1
         ds = html_1.json()['data']['room'][index]['text']
         ns = html_1.json()['data']['room'][index]['nickname']
@@ -108,6 +109,9 @@ class SendLiveRoll():
         else:
             #if ns == my_ns or (ns == self.nickname and ds == self.text):
             if (ns == self.nickname and ds == self.text):
+                Robot_Time += 1
+                if Robot_Time > 6:
+                    Robot_Time = 6
                 need_send = 0
 
         self.nickname = ns
@@ -161,6 +165,9 @@ if __name__ == '__main__':
             need_send = 0
             danmu.judge()
             if need_study == 1:
+                Robot_Time -= 1
+                if Robot_Time < 1:
+                    Robot_Time = 1
                 danmu.study()
                 need_study = 0
                 if need_send == 1:

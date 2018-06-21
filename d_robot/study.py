@@ -31,7 +31,7 @@ class Study_Robot():        #别的小朋友都在学习，你不学习的吗？
             for s1 in ls_t:
                 for s2 in s1:
                     if s.find(s2) != -1:
-                        print(s2)
+                        #print(s2)
                         flag_ws = 0
                         for ws_i in range(0,len(word)):
                             if s2==word[ws_i]:
@@ -52,7 +52,7 @@ class Study_Robot():        #别的小朋友都在学习，你不学习的吗？
             if weight[ws_i] >= max and weight[ws_i] >= yuzhi:
                 rt.append(word[ws_i])
         self.msg_q.append(text)
-        print(self.msg_q)
+        #print(self.msg_q)
         if len(rt) != 0:
             print('add words max = '+ str(max))
             print(rt)

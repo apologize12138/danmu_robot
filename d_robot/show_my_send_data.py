@@ -13,4 +13,6 @@ class sbd():
 
 if __name__ == '__main__':
     show_my_send_data = sbd()
+    print('\n\n')
     print(show_my_send_data.my_send_data)
+    print('\n\n')

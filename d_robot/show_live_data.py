@@ -13,4 +13,6 @@ class sbd():
 
 if __name__ == '__main__':
     show_live_data = sbd()
+    print('\n\n')
     print(show_live_data.live_data)
+    print('\n\n')
